@@ -1,0 +1,170 @@
+using System;
+
+
+namespace TrafficLigth
+{
+    public class TrafficLigth
+    {
+        static int num = 0;
+        static int ligth = 0;
+        static int ligths = 0;
+        static int green = 0;
+        static int yellow = 0;
+        static int red = 0;
+
+        static void Main(string[] args)
+        {
+            ConsoleColor color = ConsoleColor.White;
+            Console.Write("Write number: ");
+            num = Convert.ToInt32(Console.ReadLine());
+            if (num <= 0)
+            {
+                Console.WriteLine("number is wrong!");
+
+            }
+            else
+            {
+
+                while (ligths < num)
+                {
+                    Thread.Sleep(500);
+                    Console.Clear();
+                    ligths++;
+
+
+                    switch (ligth)
+                    {
+                        case 0:
+                            green++;
+                            color = ConsoleColor.Green;
+                            traficligth(color);
+                            ligth++;
+                            break;
+
+                        case 1:
+                            yellow++;
+                            color = ConsoleColor.Yellow;
+                            traficligth(color);
+                            ligth++;
+                            break;
+
+                        case 2:
+                            red++;
+                            color = ConsoleColor.Red;
+                            traficligth(color);
+                            ligth++;
+                            break;
+
+                        case 3:
+                            yellow++;
+                            color = ConsoleColor.Yellow;
+                            traficligth(color);
+                            ligth = 0;
+                            break;
+
+
+                    }
+                }
+            }
+        }
+
+
+        static void callInfo()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Ligths: " + ligths);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Red: " + red);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Yellow: " + yellow);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Green: " + green);
+        }
+
+
+
+        static void traficligth(ConsoleColor color)
+        {
+            int width = 18;
+            int height = 2;
+
+
+            callInfo();
+            for (int l = 0; l < 3; l++)
+            {
+                for (int i = 0; i < height; i++)
+                {
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    for (int j = 0; j < width; j++)
+                    {
+                        Console.Write("■");
+                    }
+                    Console.WriteLine();
+
+                }
+                if (ligth == 2 && l == 0)
+                {
+                    circle(color);
+                }
+                else if (ligth == 1 && l == 1)
+                {
+                    circle(color);
+                }
+                else if (ligth == 3 && l == 1)
+                {
+                    circle(color);
+                }
+                else if (ligth == 0 && l == 2)
+                {
+                    circle(color);
+                }
+                else
+                {
+                    circle(ConsoleColor.Black);
+                }
+            }
+            for (int i = 0; i < height; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                for (int j = 0; j < width; j++)
+                {
+                    Console.Write("■");
+                }
+                Console.WriteLine();
+
+            }
+
+
+        }
+
+
+        static void circle(ConsoleColor color)
+        {
+            int width = 18;
+            int lightWidth = 15;
+            int lightHeight = 5;
+            for (int i = 0; i < lightHeight; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                for (int j = 0; j < width; j++)
+                {
+                    if (j > 1 && j < lightWidth + 1)
+                    {
+                        Console.ForegroundColor = color;
+                        Console.Write("■");
+
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Write("■");
+                    }
+                }
+                Console.WriteLine();
+
+            }
+        }
+
+
+    }
+}
